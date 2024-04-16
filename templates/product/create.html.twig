@@ -14,7 +14,7 @@
                 </div>
                 <div>
                     {{ form_label(form.quantity) }}
-                    {{ form_widget(form.quantity) }}
+                    {{ form_widget(form.quantity, {'attr':{'class':'product-quantity'}}) }}
                 </div>
             </div>
             <div>
@@ -27,14 +27,14 @@
                 <div>
                     {{ form_label(form.amountTVA) }}
                     {{ form_widget(form.amountTVA, {'attr':{'class':'product-amountTVA'}}) }}
-                    <span>Montant(€) * 20% de la TVA</span>
+                    <span>[Montant(€) * Qté] * 20% de la TVA</span>
                 </div>
             <div>
             <div>
                 <div>
                     {{ form_label(form.totalTVA) }}
                     {{ form_widget(form.totalTVA, {'attr':{'class':'product-totalTVA'}}) }}
-                    <span>Montant(€) + Montant de la TVA</span>
+                    <span>[Montant(€) * Qté] + Montant de la TVA</span>
                 </div>
             <div>
             <div>
