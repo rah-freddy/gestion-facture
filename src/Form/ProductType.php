@@ -42,7 +42,6 @@ class ProductType extends AbstractType
                 'scale' => 2,
                 'attr' => [
                     'inputmode' => 'decimal',
-                    'id' => 'amountTVA'
                 ],
                 'disabled' => true,
             ])
@@ -51,7 +50,6 @@ class ProductType extends AbstractType
                 'scale' => 2,
                 'attr' => [
                     'inputmode' => 'decimal',
-                    'id' => 'total'
                 ],
                 'disabled' => true,
             ])

@@ -39,23 +39,21 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $description = $form['description']->getData();
             $amount = $form['amount']->getData();
+            $quantity = $form['quantity']->getData();
             $amountTVA = $form['amountTVA']->getData();
             if ($amountTVA === null) {
-                $amountTVA = (float)$amount * 0.2; // 20% de TVA
+                $amountTVA = (float)$amount * $quantity * 0.2; // 20% de TVA
                 $product->setAmountTVA(number_format($amountTVA, 2));
             } else {
                 $product->setAmountTVA($amountTVA);
             }
-            $totalTVA = (float)$amount + (float)$product->getAmountTVA();
+            $totalTVA = (float)($amount * $quantity) + (float)$product->getAmountTVA();
             $product->setTotalTVA(number_format($totalTVA, 2));
             $invoice = $form['invoice']->getData();
-            $quantity = $form['quantity']->getData();
 
             $product->setDescription($description);
             $product->setAmount($amount);
-            $product->setAmountTVA($amountTVA);
             $product->setInvoice($invoice);
-            $product->setTotalTVA($totalTVA);
             $product->setQuantity($quantity);
 
             $this->em->persist($product);

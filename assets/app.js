@@ -14,9 +14,10 @@ $(document).ready(function () {
         var amount = parseFloat($(this).val());
         var amountTVA = $('.product-amountTVA');
         var totalTVA = $('.product-totalTVA');
-        var inputamountTVA = amount * 0.2;
+        var quantity = parseFloat($('.product-quantity').val());
+        var inputamountTVA = (amount * quantity) * 0.2;
         amountTVA.val(inputamountTVA);
-        var totalAmountTVA = amount + inputamountTVA;
+        var totalAmountTVA = (amount * quantity) + inputamountTVA;
         totalTVA.val(totalAmountTVA.toFixed(2));
     });
 });
