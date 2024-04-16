@@ -7,3 +7,16 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import $ from 'jquery';
+
+$(document).ready(function () {
+    $('.product-amount').on('keyup', function () {
+        var amount = parseFloat($(this).val());
+        var amountTVA = $('.product-amountTVA');
+        var totalTVA = $('.product-totalTVA');
+        var inputamountTVA = amount * 0.2;
+        amountTVA.val(inputamountTVA);
+        var totalAmountTVA = amount + inputamountTVA;
+        totalTVA.val(totalAmountTVA.toFixed(2));
+    });
+});

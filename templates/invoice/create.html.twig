@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau facture{% endblock %}
+
+{% block body %}
+
+	<div>
+		<h3>Ajouter nouveau facture</h3>
+		{{form_start(form)}}
+            <div>
+                <div>
+                    {{ form_label(form.billDate) }}
+                    {{ form_widget(form.billDate) }}
+                </div>
+                <div>
+                    {{ form_label(form.billNumber) }}
+                    {{ form_widget(form.billNumber) }}
+                </div>
+            </div>
+            <div>
+                <div>
+                    {{ form_label(form.customer) }}
+                    {{ form_widget(form.customer) }}
+                </div>
+            <div>
+                <div>
+                    <button>Ajouter</button>
+                </div>
+            </div>
+		{{form_end(form)}}
+	</div>
+
+{% endblock %}
