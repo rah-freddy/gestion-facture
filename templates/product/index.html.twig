@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Liste de produits</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Facture</th>
+                <th>Description</th>
+                <th>Quantité</th>
+                <th>Montant</th>
+                <th>Montant de la TVA</th>
+                <th>Total avec TVA</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if products is defined %}
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.invoice.id }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.amount|number_format(2, ',', ' ') }}</td>
+                        <td>{{ product.amountTVA }}</td>
+                        <td>{{ product.totalTVA }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    <a href="{{ path('product_create') }}">
+        <button type="button">Ajouter nouveau</button>
+    </a>
+</div>
+{% endblock %}

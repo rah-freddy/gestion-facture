@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    {% for message in app.flashes('success') %}
+        <div>
+            <strong>{{ message }}</strong>
+        </div>
+    {% endfor %}
+    <h1>Liste de factures</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date de facture</th>
+                <th>Numéro de facture</th>
+                <th>Client</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if invoices is defined %}
+                {% for invoice in invoices %}
+                    <tr>
+                        <td>{{ invoice.billDate|date('d/m/Y') }}</td>
+                        <td>{{ invoice.customer.id }}</td>
+                        <td>{{ invoice.billNumber }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    <a href="{{ path('invoice_create') }}">
+        <button type="button">Ajouter nouveau</button>
+    </a>
+</div>
+{% endblock %}
