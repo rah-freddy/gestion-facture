@@ -20,4 +20,15 @@ $(document).ready(function () {
         var totalAmountTVA = (amount * quantity) + inputamountTVA;
         totalTVA.val(totalAmountTVA.toFixed(2));
     });
+
+    $('.product-quantity').on('keyup', function () {
+        var quantity = parseFloat($(this).val());
+        var amountTVA = $('.product-amountTVA');
+        var totalTVA = $('.product-totalTVA');
+        var amount = parseFloat($('.product-amount').val());
+        var inputamountTVA = (amount * quantity) * 0.2;
+        amountTVA.val(inputamountTVA);
+        var totalAmountTVA = (amount * quantity) + inputamountTVA;
+        totalTVA.val(totalAmountTVA.toFixed(2));
+    });
 });

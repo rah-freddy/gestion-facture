@@ -23,8 +23,18 @@
                 {% for invoice in invoices %}
                     <tr>
                         <td>{{ invoice.billDate|date('d/m/Y') }}</td>
-                        <td>{{ invoice.customer.id }}</td>
                         <td>{{ invoice.billNumber }}</td>
+                        <td>{{ invoice.customer.id }}</td>
+                        <td>
+                            <a href="{{ path('invoice_update', {'id': invoice.id}) }}">
+                                <button type="button">Modifier</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('invoice_delete', {'id': invoice.id}) }}">
+                                <button type="button">Supprimer</button>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             {% endif %}

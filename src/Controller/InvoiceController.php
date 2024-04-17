@@ -56,4 +56,42 @@ class InvoiceController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/delete-invoice/{id}', name: 'invoice_delete')]
+    public function deleteInvoiceAction(int $id)
+    {
+        $invoiceId = $this->invoicereposotory->find($id);
+        $this->em->remove($invoiceId);
+        $this->em->flush();
+
+        return $this->redirectToRoute('list_invoice');
+    }
+
+    #[Route('/update-invoice/{id}', name: 'invoice_update')]
+    public function updateInvoiceAction(Request $request, int $id)
+    {
+        $invoiceId = $this->invoicereposotory->find($id);
+        $form = $this->createForm(InvoiceType::class, $invoiceId);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $billDate = $form['billDate']->getData();
+            $billNumber = $form['billNumber']->getData();
+            $customer = $form['customer']->getData();
+
+            $invoiceId->setBillDate($billDate);
+            $invoiceId->setBillNumber($billNumber);
+            $invoiceId->setCustomer($customer);
+
+            $this->em->persist($invoiceId);
+            $this->em->flush();
+
+            return $this->redirectToRoute('list_invoice');
+        }
+
+        return $this->render('invoice/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }

@@ -14,6 +14,7 @@
                 <th>Montant</th>
                 <th>Montant de la TVA</th>
                 <th>Total avec TVA</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -24,8 +25,18 @@
                         <td>{{ product.description }}</td>
                         <td>{{ product.quantity }}</td>
                         <td>{{ product.amount|number_format(2, ',', ' ') }}</td>
-                        <td>{{ product.amountTVA }}</td>
-                        <td>{{ product.totalTVA }}</td>
+                        <td>{{ product.amountTVA|number_format(2, ',', ' ') }}</td>
+                        <td>{{ product.totalTVA|number_format(2, ',', ' ') }}</td>
+                        <td>
+                            <a href="{{ path('product_update', {'id': product.id}) }}">
+                                <button type="button">Modifier</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('product_delete', {'id': product.id}) }}">
+                                <button type="button">Supprimer</button>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             {% endif %}
